@@ -10,30 +10,37 @@
 <body>
     <div class="container">
         <h1 >Live Pad</h1>
+        <center>  <div id="upload-container">
+            <label for="audio-upload" id="upload-label">Clique aqui para fazer o upload dos arquivos de áudio</label>
+            <input type="file" id="audio-upload" accept="audio/*" multiple onchange="uploadAudio()" />
+        </div></center>
+               <progress id="upload-progress" max="100"></progress>
+       <center> <div id="upload-message"></div> </center>
+        <div class="barra-inferior">
+            <div class="volume-control">
+                <div class="botoes">
+                    <button style="zoom: 0.8; width: 60px; height: 50px;" onclick="saveSounds()">Salvar Playlist</button>
+                    <button style="zoom: 0.8; width: 60px; height: 50px;" onclick="deletePlaylist()"><i class="fas fa-trash"></i> Apagar Playlist</button>
+                </div>
+                
     
-        <div class="volume-control">
-            <div id="upload-container">
-                <label for="audio-upload" id="upload-label">Clique aqui para fazer o upload dos arquivos de áudio</label>
-                <input type="file" id="audio-upload" accept="audio/*" multiple onchange="uploadAudio()" />
-              </div>
-              
-            <label id="volume-label" for="volume">Volume: 100%</label>
-            <input type="range" id="volume" min="0" max="100" value="100" />
+                <label id="volume-label" for="volume">Volume: 100%</label>
+                <input type="range" id="volume" min="0" max="100" value="100" />
+            </div>
+            <button id="stop-button" onclick="stopSound()">Parar</button>
+            <span id="progressive-time">00:00:00</span>
+            <span id="regressive-time" style="color: red;">00:00:00</span>
+            <input type="text" id="search-input" placeholder="Buscar por nome" />
+            <button id="search-button" onclick="searchSound()">Buscar</button>
+            <p id="search-message" style="color: red;"></p>
+            
         </div>
-        <button id="stop-button" onclick="stopSound()">Parar</button>
-        <span id="progressive-time">00:00:00</span>
-<span id="regressive-time"  style="color: red;">00:00:00</span>
-        <input type="text" id="search-input" placeholder="Buscar por nome" />
-<button id="search-button" onclick="searchSound()">Buscar</button>
-<p id="search-message" style="color: red;"></p>
-<button onclick="saveSounds()">Salvar Playlist</button>
-<button onclick="deletePlaylist()"><i class="fas fa-trash"></i> Apagar Playlist</button>
+        
 
 
 
         <div class="buttons-container" id="buttons-container"></div>
-        <progress id="upload-progress" max="100"></progress>
-        <div id="upload-message"></div>
+      
     </div>
     <script src="scripts.js"></script>
 </body>
