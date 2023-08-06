@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Live Pad</title>
+    <meta description="Efeitos sonoros nas suas lives e podcasts" >
+</head>
+<body>
+    <div class="container">
+        <h1>Live Pad</h1>
+    
+        <div class="volume-control">
+            <div id="upload-container">
+                <label for="audio-upload" id="upload-label">Clique aqui para fazer o upload dos arquivos de áudio</label>
+                <input type="file" id="audio-upload" accept="audio/*" multiple onchange="uploadAudio()" />
+              </div>
+              
+            <label id="volume-label" for="volume">Volume: 100%</label>
+            <input type="range" id="volume" min="0" max="100" value="100" />
+        </div>
+        <button id="stop-button" onclick="stopSound()">Parar</button>
+        <span id="progressive-time">00:00:00</span>
+<span id="regressive-time">00:00:00</span>
+        <input type="text" id="search-input" placeholder="Buscar por nome" />
+<button id="search-button" onclick="searchSound()">Buscar</button>
+<p id="search-message" style="color: red;"></p>
+<button onclick="saveSounds()">Salvar Playlist</button>
+<button onclick="deletePlaylist()"><i class="fas fa-trash"></i> Apagar Playlist</button>
+
+
+
+        <div class="buttons-container" id="buttons-container"></div>
+        <progress id="upload-progress" max="100"></progress>
+        <div id="upload-message"></div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
