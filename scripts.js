@@ -25,7 +25,12 @@ controleVolume.addEventListener('input', function() {
     if (lastAudio) {
         lastAudio.volume = valorVolume / 100;
     }
+    atualizarLabelVolume(valorVolume); // Chama a função para atualizar a label
 });
+function atualizarLabelVolume(valorVolume) {
+    document.getElementById('volume-label').innerText = 'Volume: ' + valorVolume + '%';
+}
+
 
 function carregarPlaylist() {
     const store = db.transaction('sons').objectStore('sons');
@@ -241,3 +246,10 @@ function searchSound() {
         mensagemBusca.innerText = '';
     }
 }
+const searchInput = document.getElementById('search-input');
+searchInput.addEventListener('keyup', function(e) {
+    if (e.key === 'Enter' || e.keyCode === 13) {
+        searchSound();
+    }
+});
+
