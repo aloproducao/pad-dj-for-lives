@@ -158,10 +158,12 @@ function generateNewButton(fileName, id) {
     const nomeDecodificado = decodeURIComponent(fileName); // Decodifica o nome do arquivo
     const nomeSemExtensao = nomeDecodificado.split('.').slice(0, -1).join('.');
     const nomeBotao = nomeSemExtensao.length <= 30 ? nomeSemExtensao : nomeSemExtensao.substring(0, 30);
+    // console.log(`Buttaum ${nomeDecodificado}`);
+    // console.log(nomeSemExtensao.length <= 30);
 
     const botao = document.createElement('button');
     botao.id = id;
-    botao.innerText = nomeBotao;
+    botao.innerText = nomeDecodificado;
     botao.onclick = () => playSound(id);
     botao.classList.add('button-sound');
     botao.draggable = true;
