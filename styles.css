@@ -5,6 +5,17 @@ body {
     padding: 20px;
     color: white;
 }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ffffff03;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+}
+
 .barra-inferior {
     position: fixed;
     bottom: 0;
@@ -14,43 +25,51 @@ body {
     color: white;
     padding: 10px;
     display: flex;
-    flex-wrap: wrap; /* Permite que os elementos passem para a próxima linha se necessário */
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
-    gap: 03px;
-}
-
-.volume-control {
-    display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.botoes {
-    display: flex; /* Isso fará com que os botões fiquem lado a lado */
-    gap: 10px; /* Isso adiciona um pequeno espaço entre os botões */
-}
-
-
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #ffffff03;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: #ffffff;
+@media (min-width: 768px) {
+    .barra-inferior {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
 }
 
 .volume-control {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 10px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .volume-control {
+        flex-direction: row;
+        justify-content: center;
+        width: auto;
+    }
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .botoes {
+        width: auto;
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
 }
 
 .volume-control label,
@@ -63,7 +82,8 @@ h1 {
     flex-wrap: wrap;
     justify-content: center;
 }
-button{
+
+button {
     width: 170px;
     height: 70px;
 }
@@ -129,6 +149,7 @@ progress {
         transform: scale(1);
     }
 }
+
 #stop-button {
     padding: 10px;
     margin: 5px;
@@ -143,6 +164,7 @@ progress {
 #stop-button:hover {
     background-color: #d00;
 }
+
 #search-input {
     padding: 5px;
     margin: 5px;
@@ -164,6 +186,7 @@ progress {
 #search-button:hover {
     background-color: #0056b3;
 }
+
 #upload-container {
     position: relative;
     width: 80%;
