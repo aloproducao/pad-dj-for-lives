@@ -4,8 +4,13 @@ const path = require('path');
 
 const app = express();
 
+// Servir arquivos estáticos do diretório /public
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/getSounds', (req, res) => {
-    const soundsDir = path.join(__dirname, 'sounds');
+    // Ajustar o caminho para a pasta sounds que está dentro de /public
+    const soundsDir = path.join(__dirname, 'public', 'sounds');
+    
     fs.readdir(soundsDir, (err, files) => {
         if (err) {
             res.status(500).send({ error: 'Falha ao ler a pasta de sons.' });
