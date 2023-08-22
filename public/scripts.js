@@ -287,3 +287,11 @@ function carregarAudiosDaPasta() {
             console.error('Erro ao carregar áudios da pasta:', error);
         });
 }
+document.addEventListener('keydown', function(event) {
+    if (event.key === "ArrowDown") {
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.focus();
+        }
+    }
+});
