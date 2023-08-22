@@ -255,3 +255,19 @@ searchInput.addEventListener('keyup', function(e) {
     }
 });
 
+function carregarAudiosPredefinidos() {
+    fetch('/getSounds')
+        .then(response => response.json())
+        .then(audioFiles => {
+            audioFiles.forEach(fileName => {
+                const id = 'sound' + nextSoundId;
+                nextSoundId++;
+                const src = '/sounds/' + fileName;
+                sonsCarregados[id] = src;
+                generateNewButton(fileName, id);
+            });
+        })
+        .catch(error => {
+            console.error('Erro ao carregar áudios predefinidos:', error);
+        });
+}
