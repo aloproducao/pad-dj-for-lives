@@ -1,7 +1,7 @@
 {
   "name": "pad-dj-for-lives",
   "version": "1.0.0",
-  "description": "",
+  "description": "Live Pad, developed with dedication by Miguel Kallemback, represents a step forward in how we experience audio in our live streams and podcasts. Without the pretense of revolutionizing the market, offer a practical and efficient solution for audio enthusiasts.",
   "main": "scripts.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
