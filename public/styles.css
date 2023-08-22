@@ -170,14 +170,29 @@ progress {
     margin: 5px;
     cursor: pointer;
     border: none;
-    background-color: #f00;
-    color: #ffffff;
+    background-color: rgb(204, 255, 0);
+    color: #1d1d1d;
     border-radius: 5px;
     width: 20vh;
     transition: background-color 0.3s;}
 
 #search-button:hover {
-    background-color: #0056b3;
+    background-color: #00b306;
+}
+
+button {
+    padding: 10px;
+   margin: 5px;
+   cursor: pointer;
+   border: none;
+   background-color: rgb(204, 255, 0);
+   color: #1d1d1d;
+   border-radius: 5px;
+   width: 20vh;
+   transition: background-color 0.3s;}
+
+button:hover {
+   background-color: #00b306;
 }
 
 #upload-container {
