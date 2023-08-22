@@ -4,7 +4,7 @@ Crafted with dedication and passion by Miguel Kallemback, the Live Pad represent
 
 ## Introduction
 
-In a world dominated by digital content, small details can turn a regular live stream into an immersive auditory experience. With Live Pad, Miguel offers an intuitive tool for adding sound effects in real-time, providing a richer and more interactive atmosphere for your audience.
+In a world dominated by digital content, small details can turn a regular live stream into an immersive auditory experience. With Live Pad, offers an intuitive tool for adding sound effects in real-time, providing a richer and more interactive atmosphere for your audience.
 
 ## Features
 
