@@ -25,3 +25,72 @@ In a world dominated by digital content, small details can turn a regular live s
 
 Live Pad is the result of Miguel Kallemback's commitment to simplifying and enriching the audio experience in live streams and podcasts. Without claiming to revolutionize the market, Miguel aims to offer a practical and efficient solution for audio enthusiasts.
 
+Certainly! Here's a markdown guide on how to run the project both locally and on Vercel.
+
+---
+
+## Live Pad: Getting Started Guide
+
+### Local Setup
+
+#### Prerequisites:
+- Node.js installed on your machine.
+- npm (Node Package Manager), which usually comes bundled with Node.js.
+
+#### Steps:
+1. **Clone the Repository**:
+   ```
+   git clone https://github.com/aloproducao/pad-dj-for-lives 
+   cd live-pad
+   ```
+
+2. **Install Dependencies**:
+   Run the following command to install all required dependencies:
+   ```
+   npm install
+   ```
+
+3. **Start the Local Server**:
+   ```
+   npm start
+   ```
+
+4. **Access the Application**:
+   Open your preferred browser and navigate to:
+   ```
+   http://localhost:3000
+   ```
+
+### Deployment on Vercel
+
+#### Prerequisites:
+- A [Vercel](https://vercel.com/) account.
+- Vercel CLI installed. If not, you can install it using:
+  ```
+  npm install -g vercel
+  ```
+
+#### Steps:
+1. **Login to Vercel via CLI**:
+   ```
+   vercel login
+   ```
+
+2. **Navigate to the Project Directory**:
+   ```
+   cd path_to_your_project/live-pad
+   ```
+
+3. **Deploy the Project**:
+   Simply run the following command:
+   ```
+   vercel
+   ```
+   Follow the on-screen prompts. Once the deployment is complete, Vercel CLI will provide you with a live URL.
+
+4. **Access the Live Application**:
+   Click on the provided live URL or paste it into your browser to access the deployed application.
+
+---
+
+This guide should help you run the Live Pad project both on your local machine and on Vercel. If you have any further questions or run into issues, feel free to reach out!
