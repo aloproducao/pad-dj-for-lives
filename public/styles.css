@@ -227,3 +227,10 @@ button:hover {
     opacity: 0;
     cursor: pointer;
 }
+
+video {
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

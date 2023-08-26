@@ -25,7 +25,6 @@ In a world dominated by digital content, small details can turn a regular live s
 
 Live Pad is the result of Miguel Kallemback's commitment to simplifying and enriching the audio experience in live streams and podcasts. Without claiming to revolutionize the market, Miguel aims to offer a practical and efficient solution for audio enthusiasts.
 
-Certainly! Here's a markdown guide on how to run the project both locally and on Vercel.
 
 ---
 

@@ -1,7 +1,7 @@
 // Inicialização do IndexedDB
 let db;
 let nextSoundId = 1;
-const request = indexedDB.open('playList', 1);
+const request = indexedDB.open('playList', 2);
 request.onerror = function() {
     console.log('Erro ao abrir o banco de dados');
 };
@@ -11,19 +11,19 @@ request.onsuccess = function() {
 };
 request.onupgradeneeded = function(e) {
     const db = e.target.result;
-    if (!db.objectStoreNames.contains('sons')) {
-        db.createObjectStore('sons', { keyPath: 'id' });
+    if (!db.objectStoreNames.contains('videos')) {
+        db.createObjectStore('videos', { keyPath: 'id' });
     }
 };
 
 const controleVolume = document.getElementById('volume');
-let lastAudio;
-const sonsCarregados = {};
+let lastVideo;
+const videosCarregados = {};
 
 controleVolume.addEventListener('input', function() {
     let valorVolume = controleVolume.value;
-    if (lastAudio) {
-        lastAudio.volume = valorVolume / 100;
+    if (lastVideo) {
+        lastVideo.volume = valorVolume / 100;
     }
     atualizarLabelVolume(valorVolume); // Chama a função para atualizar a label
 });
@@ -33,15 +33,15 @@ function atualizarLabelVolume(valorVolume) {
 
 
 function carregarPlaylist() {
-    const store = db.transaction('sons').objectStore('sons');
+    const store = db.transaction('videos').objectStore('videos');
     store.openCursor().onsuccess = function(e) {
         const cursor = e.target.result;
         if (cursor) {
-            const idNum = parseInt(cursor.value.id.replace('sound', ''), 10);
+            const idNum = parseInt(cursor.value.id.replace('video', ''), 10);
             if (idNum >= nextSoundId) {
                 nextSoundId = idNum + 1;
             }
-            sonsCarregados[cursor.value.id] = cursor.value.src;
+            videosCarregados[cursor.value.id] = cursor.value.src;
             generateNewButton(cursor.value.fileName, cursor.value.id);
             cursor.continue();
         }
@@ -49,16 +49,16 @@ function carregarPlaylist() {
 }
 
 
-function saveSounds() {
-    const transaction = db.transaction(['sons'], 'readwrite');
-    const store = transaction.objectStore('sons');
+function saveVideos() {
+    const transaction = db.transaction(['videos'], 'readwrite');
+    const store = transaction.objectStore('videos');
     store.clear();
 
-    const buttons = document.querySelectorAll('.button-sound');
+    const buttons = document.querySelectorAll('.button-video');
     buttons.forEach((button, index) => {
         store.put({
             id: button.id,
-            src: sonsCarregados[button.id],
+            src: videosCarregados[button.id],
             fileName: button.innerText,
             position: index
         });
@@ -69,21 +69,22 @@ function saveSounds() {
 
 function deletePlaylist() {
     if (confirm('Você realmente deseja apagar toda a playlist?')) {
-        const transaction = db.transaction(['sons'], 'readwrite');
-        const store = transaction.objectStore('sons');
+        const transaction = db.transaction(['videos'], 'readwrite');
+        const store = transaction.objectStore('videos');
         store.clear();
         document.getElementById('buttons-container').innerHTML = '';
         alert('Playlist apagada com sucesso!');
     }
 }
 
+
 function playSound(id) {
     const botao = document.getElementById(id);
     if (!botao) return;
 
-    if (lastAudio) {
-        lastAudio.pause();
-        lastAudio.currentTime = 0;
+    if (lastVideo) {
+        lastVideo.pause();
+        lastVideo.currentTime = 0;
         const playingButton = document.querySelector('.playing');
         if (playingButton) {
             playingButton.classList.remove('playing');
@@ -91,31 +92,33 @@ function playSound(id) {
     }
 
     botao.classList.add('playing');
-    const srcAudio = sonsCarregados[id];
-    let audio = new Audio(srcAudio);
-    lastAudio = audio;
+    const srcVideo = videosCarregados[id];
+    let video = document.getElementById('video-player');
+    video.src = srcVideo;
+    lastVideo = video;
 
-    audio.volume = controleVolume.value / 100;
+    video.volume = controleVolume.value / 100;
 
-    audio.addEventListener('timeupdate', function() {
-        updateProgressiveTime(audio);
-        updateRegressiveTime(audio);
+    video.addEventListener('timeupdate', function() {
+        updateProgressiveTime(video);
+        updateRegressiveTime(video);
     });
 
-    audio.play();
+    video.play();
 
-    audio.addEventListener('ended', function() {
+    video.addEventListener('ended', function() {
         botao.classList.remove('playing');
     });
 }
 
-function updateProgressiveTime(audio) {
-    const time = formatTime(audio.currentTime);
+
+function updateProgressiveTime(video) {
+    const time = formatTime(video.currentTime);
     document.getElementById('progressive-time').innerText = time;
 }
 
-function updateRegressiveTime(audio) {
-    const time = formatTime(audio.duration - audio.currentTime);
+function updateRegressiveTime(video) {
+    const time = formatTime(video.duration - video.currentTime);
     document.getElementById('regressive-time').innerText = time;
 }
 
@@ -131,25 +134,25 @@ function pad(number) {
     return String(number).padStart(2, '0');
 }
 
-function uploadAudio() {
-    const entradaAudio = document.getElementById('audio-upload');
-    const arquivos = entradaAudio.files;
+function uploadVideo() {
+    
+    const entradaVideo = document.getElementById('video-upload');
+    const arquivos = entradaVideo.files;
 
-    Array.from(arquivos).forEach((arquivo, index) => {
-        const id = `sound${index + 1}`;
+    Array.from(arquivos).forEach((arquivo) => {
+        const id = `video${nextSoundId}`;
+        nextSoundId++;
         const nomeCodificado = encodeURIComponent(arquivo.name); // Codifica o nome do arquivo
         const leitor = new FileReader();
 
         leitor.onload = function(e) {
-            sonsCarregados[id] = e.target.result;
+            videosCarregados[id] = e.target.result;
             generateNewButton(nomeCodificado, id); // Chama com o nome codificado
         };
 
         leitor.readAsDataURL(arquivo);
     });
-
-    const mensagemUpload = document.getElementById('upload-message');
-    mensagemUpload.innerText = 'Áudios carregados com sucesso!';
+mensagemUpload.innerText = 'Áudios carregados com sucesso!';
 }
 
 
@@ -165,7 +168,7 @@ function generateNewButton(fileName, id) {
     botao.id = id;
     botao.innerText = nomeDecodificado;
     botao.onclick = () => playSound(id);
-    botao.classList.add('button-sound');
+    botao.classList.add('button-video');
     botao.draggable = true;
     botao.addEventListener('contextmenu', deleteButton);
 
@@ -182,10 +185,10 @@ function deleteButton(e) {
     if (confirm('Você realmente deseja excluir este áudio da lista?')) {
         const id = e.currentTarget.id;
         e.currentTarget.remove();
-        const transaction = db.transaction(['sons'], 'readwrite');
-        const store = transaction.objectStore('sons');
+        const transaction = db.transaction(['videos'], 'readwrite');
+        const store = transaction.objectStore('videos');
         store.delete(id);
-        delete sonsCarregados[id];
+        delete videosCarregados[id];
     }
 }
 
@@ -205,7 +208,7 @@ function drop(e) {
     const dropTarget = e.target;
     const containerBotoes = document.getElementById('buttons-container');
 
-    if (dropTarget.className === 'button-sound') {
+    if (dropTarget.className === 'button-video') {
         containerBotoes.insertBefore(draggedElement, dropTarget);
     } else {
         containerBotoes.appendChild(draggedElement);
@@ -217,9 +220,9 @@ function dragEnd() {
 }
 
 function stopSound() {
-    if (lastAudio) {
-        lastAudio.pause();
-        lastAudio.currentTime = 0;
+    if (lastVideo) {
+        lastVideo.pause();
+        lastVideo.currentTime = 0;
         const playingButton = document.querySelector('.playing');
         if (playingButton) {
             playingButton.classList.remove('playing');
@@ -229,7 +232,7 @@ function stopSound() {
 
 function searchSound() {
     const query = document.getElementById('search-input').value.trim().toLowerCase();
-    const buttons = document.querySelectorAll('.button-sound');
+    const buttons = document.querySelectorAll('.button-video');
     let found = false;
 
     buttons.forEach((button) => {
@@ -255,15 +258,15 @@ searchInput.addEventListener('keyup', function(e) {
     }
 });
 
-function carregarAudiosPredefinidos() {
-    fetch('/getSounds')
+function carregarVideosPredefinidos() {
+    fetch('/getVideos')
         .then(response => response.json())
-        .then(audioFiles => {
-            audioFiles.forEach(fileName => {
-                const id = 'sound' + nextSoundId;
+        .then(videoFiles => {
+            videoFiles.forEach(fileName => {
+                const id = 'video' + nextSoundId;
                 nextSoundId++;
-                const src = '/sounds/' + fileName;
-                sonsCarregados[id] = src;
+                const src = '/videos/' + fileName;
+                videosCarregados[id] = src;
                 generateNewButton(fileName, id);
             });
         })
@@ -271,15 +274,15 @@ function carregarAudiosPredefinidos() {
             console.error('Erro ao carregar áudios predefinidos:', error);
         });
 }
-function carregarAudiosDaPasta() {
-    fetch('/getSounds')
+function carregarVideosDaPasta() {
+    fetch('/getVideos')
         .then(response => response.json())
-        .then(audioFiles => {
-            audioFiles.forEach(fileName => {
-                const id = 'sound' + nextSoundId;
+        .then(videoFiles => {
+            videoFiles.forEach(fileName => {
+                const id = 'video' + nextSoundId;
                 nextSoundId++;
-                const src = '/sounds/' + fileName;
-                sonsCarregados[id] = src;
+                const src = '/videos/' + fileName;
+                videosCarregados[id] = src;
                 generateNewButton(fileName, id);
             });
         })

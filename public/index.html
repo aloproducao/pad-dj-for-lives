@@ -55,17 +55,19 @@
   <body>
     <div class="container">
       <h1>Live Pad</h1>
+    <video id="video-player" controls width="100%" preload="none"></video>
+
       <center>
         <div id="upload-container">
           <label for="audio-upload" id="upload-label"
-            >Clique aqui para fazer o upload dos arquivos de áudio</label
+            >Clique aqui para fazer o upload dos arquivos de vídeo</label
           >
           <input
             type="file"
-            id="audio-upload"
-            accept="audio/*"
+            id="video-upload"
+            accept="video/*"
             multiple
-            onchange="uploadAudio()"
+            onchange="uploadVideo()"
           />
         </div>
       </center>
@@ -73,10 +75,10 @@
       <center><div id="upload-message"></div></center>
       <div class="barra-inferior">
         <div class="controls-group">
-          <button onclick="carregarAudiosDaPasta()">
+          <button onclick="carregarVideosDaPasta()">
             Carregar Áudios da Pasta
           </button>
-          <button class="small-btn" onclick="saveSounds()">
+          <button class="small-btn" onclick="saveVideos()">
             Salvar Playlist
           </button>
           <button class="small-btn delete-btn" onclick="deletePlaylist()">

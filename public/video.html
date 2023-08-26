@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+<head>
+<title>Video Player</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #fullscreenVideoPlayer {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<video controls="True" height="100%" id="mediaPlayer" width="100%"></video>
+<script>
+        const videoPlayer = document.getElementById('fullscreenVideoPlayer');
+        const videoPath = localStorage.getItem('videoPath');
+        if (videoPath) {
+            videoPlayer.src = videoPath;
+            videoPlayer.play();
+        }
+    </script>
+<script>
+<script>
+    window.onload = function() {
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoSource = document.getElementById('videoSource');
+        videoSource.src = localStorage.getItem('videoPath');
+        videoPlayer.load();
+        videoPlayer.play();
+    }
+</script>
+</script></body>
+</html>
