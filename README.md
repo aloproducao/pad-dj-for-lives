@@ -1,5 +1,9 @@
 # Live Pad: The Audio Revolution in Your Hands!
+![Captura de tela de 2023-09-12 04-14-26](https://github.com/aloproducao/pad-dj-for-lives/assets/43450424/6897aa14-ca30-4e7a-a2be-666122053d92)
+
 # video version https://videopad.vercel.app/
+![Captura de tela de 2023-09-12 04-13-08](https://github.com/aloproducao/pad-dj-for-lives/assets/43450424/675d527f-f7f9-4d5d-ac7e-74b16ba49f10)
+
 
 Crafted with dedication and passion by Miguel Kallemback, the Live Pad represents a leap forward in the way we experience audio in our live streams and podcasts.
 
