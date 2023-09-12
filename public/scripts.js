@@ -152,6 +152,7 @@ function uploadVideo() {
 
         leitor.readAsDataURL(arquivo);
     });
+var mensagemUpload = document.getElementById('mensagem-upload');
 mensagemUpload.innerText = 'Áudios carregados com sucesso!';
 }
 

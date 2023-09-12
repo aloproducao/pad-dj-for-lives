@@ -75,9 +75,13 @@ h1 {
 }
 
 .buttons-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: absolute;
+
     justify-content: center;
+    z-index: 9999 !important;
+    margin-top: -60px!important;
+    margin-left: 10%;
+ 
 }
 
 .button-sound {

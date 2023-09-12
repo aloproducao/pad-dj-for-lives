@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Live pad online</title>
+    <meta name="title" content="Live pad online" />
+    <meta
+      name="description"
+      content="Live Pad, developed with dedication by Miguel Kallemback, represents a step forward in how we experience audio in our live streams and podcasts. Without the pretense of revolutionizing the market, offer a practical and efficient solution for audio enthusiasts."
+    />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/images/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/images/favicon-16x16.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/images/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/images/apple-icon-60x60.png"
+    />
+    <!-- ... and so on for other sizes -->
+    <link
+      rel="android-touch-icon"
+      sizes="36x36"
+      href="/images/android-icon-36x36.png"
+    />
+    <link
+      rel="android-touch-icon"
+      sizes="48x48"
+      href="/images/android-icon-48x48.png"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Live Pad</h1>
+    <video id="video-player" controls width="100%" preload="none"></video>
+
+      <center>
+        <div id="upload-container">
+          <label for="audio-upload" id="upload-label"
+            >Clique aqui para fazer o upload dos arquivos de vídeo</label
+          >
+          <input
+            type="file"
+            id="video-upload"
+            accept="video/*"
+            multiple
+            onchange="uploadVideo()"
+          />
+        </div>
+      </center>
+      <progress id="upload-progress" max="100"></progress>
+      <center><div id="upload-message"></div></center>
+      <div class="barra-inferior">
+        <div class="controls-group">
+          <button onclick="carregarVideosDaPasta()">
+            Carregar Áudios da Pasta
+          </button>
+          <button class="small-btn" onclick="saveVideos()">
+            Salvar Playlist
+          </button>
+          <button class="small-btn delete-btn" onclick="deletePlaylist()">
+            <i class="fas fa-trash"></i> Apagar Playlist
+          </button>
+          <button id="stop-button" onclick="stopSound()">Parar</button>
+        </div>
+
+        <div class="volume-control">
+          <label id="volume-label" for="volume">Volume: 100%</label>
+          <input type="range" id="volume" min="0" max="100" value="100" />
+        </div>
+
+        <div class="search-control">
+          <input type="text" id="search-input" placeholder="Buscar por nome" />
+          <button id="search-button" onclick="searchSound()">Buscar</button>
+          <p id="search-message" style="color: red"></p>
+        </div>
+
+        <div class="time-controls">
+          <span id="progressive-time">00:00:00</span>
+          <span id="regressive-time" style="color: red">00:00:00</span>
+        </div>
+      </div>
+
+      <div class="buttons-container" id="buttons-container"></div>
+    </div>
+    <script src="scripts.js"></script>
+  </body>
+</html>

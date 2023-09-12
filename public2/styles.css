@@ -1,0 +1,236 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #212121;
+    margin: 0;
+    padding: 20px;
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #ffffff03;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 60px;
+}
+
+.barra-inferior {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 5px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+@media (min-width: 768px) {
+    .barra-inferior {
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+.volume-control, .botoes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 5px;
+}
+
+.botoes button {
+    width: 45%; /* Tamanho reduzido para mobile */
+    height: 50px; /* Altura reduzida para mobile */
+    margin: 2.5%; /* Espaçamento para garantir as duas colunas */
+}
+
+@media (min-width: 768px) {
+    .volume-control, .botoes {
+        flex-direction: row;
+        justify-content: center;
+        width: auto;
+        
+    }
+    
+}
+
+h1 {
+    text-align: center;
+    color: #ffffff;
+}
+
+.volume-control label,
+.volume-control input {
+    width: 80%;
+}
+
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button-sound {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    color: #ffffff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button-sound:nth-child(4n+1) {
+    background-color: #007bff;
+}
+
+.button-sound:nth-child(4n+2) {
+    background-color: #b5e7e5;
+    color: #333333;
+}
+
+.button-sound:nth-child(4n+3) {
+    background-color: #ffe0e6;
+    color: #333333;
+}
+
+.button-sound:nth-child(4n+4) {
+    background-color: #d1e0ff;
+    color: #333333;
+}
+
+.button-sound:hover {
+    background-color: #0056b3;
+    color: white;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+progress {
+    width: 100%;
+    margin: 5px 0;
+}
+
+.button-sound.playing {
+    background-color: #ff0000;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#stop-button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #f00;
+    color: #ffffff;
+    border-radius: 5px;
+    width: 20vh;
+    transition: background-color 0.3s;
+}
+
+#stop-button:hover {
+    background-color: #d00;
+}
+
+#search-input {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search-button {
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(44, 44, 44);
+    color: #e9e9e9;
+    border-radius: 5px;
+    width: 20vh;
+    transition: background-color 0.3s;}
+ 
+
+#search-button:hover {
+    background-color: #171717;
+}
+
+button {
+    padding: 10px;
+   margin: 5px;
+   cursor: pointer;
+   border: none;
+   background-color: rgb(44, 44, 44);
+   color: #e9e9e9;
+   border-radius: 5px;
+   width: 20vh;
+   transition: background-color 0.3s;}
+
+button:hover {
+   background-color: #171717;
+}
+
+#upload-container {
+    position: relative;
+    width: 80%;
+    text-align: center;
+}
+
+#upload-label {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#upload-label:hover {
+    background-color: #0056b3;
+}
+
+#audio-upload {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+video {
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
