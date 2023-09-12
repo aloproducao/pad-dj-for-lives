@@ -1,4 +1,5 @@
 # Live Pad: The Audio Revolution in Your Hands!
+# video version https://videopad.vercel.app/
 
 Crafted with dedication and passion by Miguel Kallemback, the Live Pad represents a leap forward in the way we experience audio in our live streams and podcasts.
 
